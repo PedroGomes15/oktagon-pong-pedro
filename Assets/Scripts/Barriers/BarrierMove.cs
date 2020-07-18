@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Barreira derivada da original com função de movimento tanto em x quanto y
+/// </summary>
 public class BarrierMove : Barrier
 {
     public float speed;
@@ -13,6 +16,9 @@ public class BarrierMove : Barrier
     [Tooltip("Use X/Y")]
     public string axis;
 
+    /// <summary>
+    /// Responsavel pelo movimento da barra
+    /// </summary>
     public override void Movement()
     {
         Vector2 newPos = new Vector2();
@@ -48,7 +54,5 @@ public class BarrierMove : Barrier
                 gotoEndPoint = !gotoEndPoint;
             }
         }
-       
-
     }
 }

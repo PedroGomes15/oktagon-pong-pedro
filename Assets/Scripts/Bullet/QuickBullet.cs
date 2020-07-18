@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Bala rapida derivada da original com limite de quicadas
+/// </summary>
 public class QuickBullet : Bullet
 {
-    public int quickCount = 3;
+    public int bounceCount = 3;
 
     public override void OnCollisionEnter2D(Collision2D collision)
     {
@@ -12,11 +15,12 @@ public class QuickBullet : Bullet
 
         if (collision.transform.tag == "Block")
         {
-            quickCount--;
-            if (quickCount <= 0)
+            bounceCount--;
+            if (bounceCount <= 0)
             {
                 DestroyBullet();
             }
         }
     }
+
 }

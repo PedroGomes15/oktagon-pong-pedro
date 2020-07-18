@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Scripts responsavel pelo controle do jogador
+/// </summary>
 public class Player : MonoBehaviour
 {
     public int playerIndex = 0;
@@ -22,10 +25,17 @@ public class Player : MonoBehaviour
 
     private bool myTurn = false;
 
+    public GameObject playerHealthBar;
+
     void Awake()
     {
         GameManager.instance.AssignPlayer(this, playerIndex);
         startAngle = this.transform.rotation.eulerAngles.z;
+    }
+
+    public void Start()
+    {
+        GameManager.instance.hudManager.SetupLifeBar(playerHealthBar, life);
     }
 
     public void StartMyTurn()
@@ -75,12 +85,16 @@ public class Player : MonoBehaviour
     public void Shot()
     {
         GameObject bullet = (GameObject)Instantiate(GameManager.instance.LoadPrefab(myBullet), this.transform.Find("Gun").position, this.transform.localRotation);
+        EndMyTurn();
     }
 
     public void TakeDamage(float dmg)
     {
         life -= dmg;
-        if(life<=0)
+
+        GameManager.instance.hudManager.SetLifeBar(playerHealthBar, life);
+
+        if (life<=0)
         {
             life = 0;
             Dead();
@@ -89,6 +103,7 @@ public class Player : MonoBehaviour
 
     public void Dead()
     {
-
+        GameManager.instance.EndGame(playerIndex);
+        Destroy(this.gameObject);
     }
 }

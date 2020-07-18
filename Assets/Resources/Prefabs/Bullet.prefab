@@ -97,9 +97,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: Normal
+  sizeStart: {x: 0, y: 0}
   size: 1
   speed: 5
   strength: 10
+  inDirection: {x: 0, y: 0}
+  limitTime: 15
 --- !u!50 &4752754913711347344
 Rigidbody2D:
   serializedVersion: 4
@@ -119,7 +122,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &7820499531165681177
 CircleCollider2D:
